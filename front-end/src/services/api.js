@@ -1,4 +1,3 @@
-const SALE = 'http://localhost:3001/sale';
 const CONTENT_TYPE = 'application/json';
 
 const options = (requestMethod, body = null, token = null) => {
@@ -43,12 +42,12 @@ export const userLogin = async ({ email, password }) => {
   return response;
 };
 
-export const closeOrder = async (orderInfo) => {
+export const finishOrder = async (orderInfo) => {
   const userToken = JSON.parse(localStorage.getItem('user'))
     ? JSON.parse(localStorage.getItem('user')).token
     : 'token';
 
-  const request = await fetch(SALE, options('POST', orderInfo, userToken));
+  const request = await fetch('http://localhost:3001/sale', options('POST', orderInfo, userToken));
 
   const response = await request.json();
   return response;

@@ -5,6 +5,8 @@ const router = express.Router();
 const tokenValidController = require('../controllers/tokenValidController');
 const salesController = require('../controllers/salesController');
 
+console.log('Entrou no sale');
+
 router.post('/', tokenValidController.checkUser, salesController.create);
 router.get('/costumer-orders', tokenValidController.checkUser, salesController.getCostumerOrders);
 router.get('/', tokenValidController.checkUser, salesController.findAll);

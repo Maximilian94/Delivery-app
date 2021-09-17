@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { getSellers, closeOrder } from '../../services/api';
-import { CartContext } from '../../Contexts/CartContext';
+import { getSellers, finishOrder } from '../../../services/api';
+import { CartContext } from '../../../Contexts/CartContext';
 
 export default function OrderForms() {
   const history = useHistory();
@@ -56,7 +56,7 @@ export default function OrderForms() {
       products: cartItems.map(({ id, quantity }) => ({ id, quantity })),
     };
 
-    const response = await closeOrder(orderInfo); // retorna { saleId }
+    const response = await finishOrder(orderInfo); // retorna { saleId }
 
     console.log({ orderInfo, response }, sellers[0].id);
 

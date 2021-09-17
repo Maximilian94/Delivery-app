@@ -15,10 +15,7 @@ export default function Checkout() {
       <div className="content">
         <PageTitle title="Finalizar pedido" />
         <OrderTable />
-        <section>
-          <h3>Detalhes e Endereço para Entrega</h3>
-          <OrderForms />
-        </section>
+        <OrderForms />
       </div>
     </div>
   );
