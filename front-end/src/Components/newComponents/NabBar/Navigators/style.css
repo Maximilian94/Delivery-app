@@ -1,0 +1,18 @@
+.navbar-navigators-div {
+  display: flex;
+  padding: 10px 5px;
+}
+
+.navbar-navigators-links {
+  color: white;
+  border-radius: 12px;
+  padding: 5px;
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.actual-page {
+  background-color: #ea7c69;
+}

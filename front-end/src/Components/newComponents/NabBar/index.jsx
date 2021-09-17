@@ -14,7 +14,6 @@ function NavBar() {
       <Navigators />
       <UserName />
       <LogOut />
-      <p>Teste</p>
     </NavBarElement>
   );
 }

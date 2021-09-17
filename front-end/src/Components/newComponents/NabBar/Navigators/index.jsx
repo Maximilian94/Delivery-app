@@ -1,42 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-const navigatorsStyle = {
-  display: 'flex',
-  padding: '10px 5px',
-};
-
-const navigationStyle = {
-  backgroundColor: '#ea7c69',
-  color: 'white',
-  borderRadius: '12px',
-  padding: '5px',
-  margin: '0 20px',
-  display: 'flex',
-  alignItems: 'center',
-};
+import './style.css';
 
 function Navigators() {
+  const currentPath = window.location.pathname;
+
+  const isActualPage = (linkToUrl) => {
+    if (linkToUrl === currentPath) {
+      return 'actual-page';
+    }
+  };
+
   return (
-    <div>
-      <div
-        style={ navigatorsStyle }
+    <div className="navbar-navigators-div">
+      {console.log(currentPath)}
+      <Link
+        className={ `navbar-navigators-links ${isActualPage('/customer/products')}` }
+        to="/customer/products"
+        data-testid="customer_products__element-navbar-link-products"
       >
-        <Link
-          style={ navigationStyle }
-          to="/customer/products"
-          data-testid="customer_products__element-navbar-link-products"
-        >
-          <span>Produtos</span>
-        </Link>
-        <Link
-          style={ navigationStyle }
-          to="/customer/orders"
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          <span>Meus pedidos</span>
-        </Link>
-      </div>
+        <span>Produtos</span>
+      </Link>
+      <Link
+        className={ `navbar-navigators-links ${isActualPage('/customer/orders')}` }
+        to="/customer/orders"
+        data-testid="customer_products__element-navbar-link-orders"
+      >
+        <span>Meus pedidos</span>
+      </Link>
     </div>
   );
 }
