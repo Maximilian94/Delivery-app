@@ -1,0 +1,18 @@
+.products-div {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.products-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.products-div-title {
+  color: aliceblue;
+  font-family: Montserrat , sans-serif;
+  font-size: 2em;
+  font-weight: 900;
+  margin-bottom: 20px;
+}

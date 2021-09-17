@@ -1,0 +1,29 @@
+.cart-button {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  transition: all .3s ease-in-out;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  padding-top: 10px;
+}
+
+.cart-button:hover {
+  transform: scale(1.05)
+}
+
+.cart-button-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.cart-button-price {
+  color: white;
+  font-weight: 700;
+  font-size: 1.5em;
+}

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useCart } from '../../Contexts/CartContext';
+import { useCart } from '../../../Contexts/CartContext';
+import cartIcon from '../../../images/grocery-cart.png';
+import './style.css';
 
 function CartButton() {
   const { totalPrice } = useCart();
@@ -14,11 +16,13 @@ function CartButton() {
       type="button"
       disabled={ isTotalPriceZero }
       data-testid="customer_products__button-cart"
+      className="cart-button"
     >
-      <Link to="checkout">
-        Ver carrinho: R$
+      <Link to="checkout" className="cart-button-link">
+        <img src={ cartIcon } alt="cart" />
         <span
           data-testid="customer_products__checkout-bottom-value"
+          className="cart-button-price"
         >
           {` ${price}`}
         </span>
