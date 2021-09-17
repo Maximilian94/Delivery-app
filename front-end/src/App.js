@@ -5,7 +5,7 @@ import {
   Login,
   Register,
   Checkout,
-  CustumeOrders,
+  CustomerOrders,
   OrderDetail,
   SellerOrders,
   SellerDetails,
@@ -22,7 +22,7 @@ function App() {
         <Route path="/customer/orders/:id" component={ OrderDetail } />
         <Route path="/customer/checkout" component={ Checkout } />
         <Route path="/customer/products" component={ Products } />
-        <Route path="/customer/orders" component={ CustumeOrders } />
+        <Route path="/customer/orders" component={ CustomerOrders } />
         <Route path="/seller/orders/:id" component={ SellerDetails } />
         <Route path="/seller/orders" component={ SellerOrders } />
         <Route path="/admin/manage" component={ AdminManager } />
