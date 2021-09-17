@@ -1,6 +1,6 @@
 import React from 'react';
 
-import OrderTable from '../Components/newComponents/OrderTable';
+import OrderTable from '../Components/newComponents/productCard/OrderTable';
 import OrderForms from '../Components/newComponents/OrderForms';
 
 import '../styles/Checkout.css';
@@ -11,7 +11,7 @@ export default function Checkout() {
     <section>
       <NavBar />
       {/* Componente Tabela de pedidos */}
-      <section>
+      <section style={ { backgroundColor: '#252836' } }>
         <h3>Finalizar pedido</h3>
         <OrderTable />
       </section>

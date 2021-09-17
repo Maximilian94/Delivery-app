@@ -1,0 +1,64 @@
+.divTable {
+  display: flex;
+  justify-content: center;
+  background-color: #252836;
+}
+
+.table-total-price {
+  font-weight: 800;
+  color: white;
+}
+
+table {
+  border-collapse:separate;
+  border-spacing:0 15px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #252836;
+}
+
+th {
+  color: white;
+  padding: 0 5px;
+}
+
+tr {
+  margin: 10px;
+  transition: 0.3s;
+}
+
+tbody > tr:hover {
+  transform: scale(1.05);
+}
+
+td {
+  text-align: center;
+}
+
+tr > .item-number {
+  background-color: #EA7C69;
+  border-radius: 8px 0 0 8px;
+}
+
+tr > .item-description {
+  padding: 5px 20px 5px 20px;
+  background-color: #1F1D2B;
+  color: white;
+}
+
+tr > .item-quantity {
+  background-color: #6BE2BE;
+}
+
+tr > .item-value {
+  background-color: #9290FE;
+}
+
+tr > .item-total {
+  background-color: #FF7CA3;
+}
+
+tr > .item-remove {
+  background-color: #FF6471;
+  border-radius: 0 8px 8px 0;
+}

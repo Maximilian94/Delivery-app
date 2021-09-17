@@ -1,0 +1,17 @@
+.exit-button button {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  transition: all .2s ease-in-out;
+}
+
+.exit-button button:hover {
+  transform: scale(1.1)
+}
+
+.exit-button img {
+  height: 50px;
+}

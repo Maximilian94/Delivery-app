@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import NavBar from '../../Components/newComponents/NabBar';
+import NavBar from '../../Components/newComponents/NabBar/index';
 import ProductCard from '../../Components/newComponents/productCard';
 import { getProducts } from '../../services/api';
 import CartButton from '../../Components/newComponents/CartButton';
@@ -16,11 +16,11 @@ function Products() {
     fetchProducts();
   }, []);
   return (
-    <div style={ { backgroundColor: '#252836' } }>
+    <div className="products-page">
       <NavBar />
       <div className="products-list">
-        {products.length > 0 && products
-          .map((prod) => <ProductCard product={ prod } key={ prod.id } />)}
+        { products.length > 0
+          && products.map((prod) => <ProductCard product={ prod } key={ prod.id } />) }
       </div>
       <CartButton />
     </div>

@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { useCart } from '../../Contexts/CartContext';
+import { useCart } from '../../../../Contexts/CartContext';
+
+import './style.css';
 
 export default function OrderTable() {
   const { cartItems, setCartItems } = useCart();
@@ -12,8 +14,8 @@ export default function OrderTable() {
   const stringTotalPrice = String(totalPrice.toFixed(2)).replace(/\./g, ',');
 
   return (
-    <>
-      <table>
+    <div className="divTable">
+      <table cellSpacing="0" cellPadding="0">
         <thead>
           <tr>
             <th>Item</th>
@@ -28,31 +30,36 @@ export default function OrderTable() {
           {cartItems.map(({ id, name, quantity, price }, i) => (
             <tr key={ id }>
               <td
+                className="item-number"
                 data-testid={ `customer_checkout__element-order-table-item-number-${i}` }
               >
                 {i + 1}
               </td>
               <td
+                className="item-description"
                 data-testid={ `customer_checkout__element-order-table-name-${i}` }
               >
                 {name}
               </td>
               <td
+                className="item-quantity"
                 data-testid={ `customer_checkout__element-order-table-quantity-${i}` }
               >
                 {quantity}
               </td>
               <td
+                className="item-value"
                 data-testid={ `customer_checkout__element-order-table-unit-price-${i}` }
               >
                 {`${price}`.replace(/\./g, ',')}
               </td>
               <td
+                className="item-total"
                 data-testid={ `customer_checkout__element-order-table-sub-total-${i}` }
               >
                 {`${(quantity * price).toFixed(2)}`.replace(/\./g, ',')}
               </td>
-              <td>
+              <td className="item-remove">
                 <button
                   data-testid={ `customer_checkout__element-order-table-remove-${i}` }
                   onClick={ () => setCartItems(cartItems
@@ -66,7 +73,10 @@ export default function OrderTable() {
           ))}
         </tbody>
       </table>
-      <div data-testid="customer_checkout__element-order-total-price">
+      <div
+        data-testid="customer_checkout__element-order-total-price"
+        className="table-total-price"
+      >
         {/**
          * Na verdade, aqui será colocao o totalPrice
          * a lógica de soma será feita em outro lugar
@@ -74,6 +84,6 @@ export default function OrderTable() {
         Total:
         {` R$ ${stringTotalPrice}`}
       </div>
-    </>
+    </div>
   );
 }

@@ -6,6 +6,7 @@ function Login() {
   return (
     <div className="App">
       <Logo />
+      <span className="logo">PSY BEER</span>
       <LoginForm title="Login" />
     </div>
   );

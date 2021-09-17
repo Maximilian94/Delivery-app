@@ -3,3 +3,8 @@
   flex-wrap: wrap;
   padding: 20px;
 }
+
+.products-page {
+  background-color: #252836;
+  min-height: 100vh;
+}
