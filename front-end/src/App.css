@@ -23,6 +23,10 @@
   max-height: 80vh;
 }
 
+.content {
+  padding: 20px;
+}
+
 @keyframes shake {
 
   0% {
