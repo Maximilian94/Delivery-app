@@ -71,7 +71,7 @@ export const getProducts = async (token) => {
 };
 
 export const getCostumerOrders = async (token) => {
-  const request = await fetch(SALE, options('GET', null, token));
+  const request = await fetch('http://localhost:3001/sale/costumer-orders', options('GET', null, token));
   const response = await request.json();
   return response;
 };

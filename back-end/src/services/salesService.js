@@ -48,9 +48,24 @@ const updateStatus = async ({ saleId, status }) => {
   return selectSale.status;
 };
 
+const getCostumerOrders = async (userId) => {
+  const findSales = await sale.findAll({
+    include: [
+      { model: user, as: 'user', attributes: { exclude: ['password'] } },
+      { model: user, as: 'seller', attributes: { exclude: ['password'] } },
+      { model: product, as: 'product', through: { attributes: ['quantity'] } },
+    ],
+    where: {
+      user_Id: userId,
+    }
+  });
+  return findSales;
+}
+
 module.exports = {
   create,
   findByPk,
   findAll,
   updateStatus,
+  getCostumerOrders,
 };

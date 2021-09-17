@@ -23,11 +23,6 @@ app.get('/images/:path', productsController.getImage);
 
 app.get('/sellers', sellerController.allSellers);
 
-app.post('/sale', tokenValidController.checkUser, salesController.create);
-app.get('/sale', tokenValidController.checkUser, salesController.findAll);
-app.get('/sale/:id', tokenValidController.checkUser, salesController.getById);
-app.put('/sale/status', tokenValidController.checkUser, salesController.updateSaleStatus);
-
 app.use((err, _req, res, _next) => {
   console.log(err);
   if (err.status) return res.status(err.status).json({ message: err.message });
