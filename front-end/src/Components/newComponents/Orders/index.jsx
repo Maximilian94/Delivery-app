@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { getCostumerOrders } from '../../../services/api';
+import { getCostumerOrders, getSellerOrders } from '../../../services/api';
 import CardCostumerOrder from '../CardCustumerOrder';
 import './style.css';
 
 function Orders() {
   const [listOrders, setListOrders] = useState([]);
+  const userType = JSON.parse(localStorage.getItem('user')).role;
+  const { token } = JSON.parse(localStorage.getItem('user'));
 
-  const fetchAllOrders = async () => {
-    const { token } = JSON.parse(localStorage.getItem('user'));
-    const productsList = await getCostumerOrders(token);
-    setListOrders(productsList);
+  const fetchOrders = async () => {
+    switch (userType) {
+    case 'seller':
+      return getSellerOrders(token);
+
+    case 'customer':
+      return getCostumerOrders(token);
+
+    default:
+      return [];
+    }
   };
 
-  useEffect(() => {
-    fetchAllOrders();
+  useEffect(async () => {
+    setListOrders(await fetchOrders());
   }, []);
 
   return (

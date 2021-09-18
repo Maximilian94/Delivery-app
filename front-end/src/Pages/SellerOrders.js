@@ -2,19 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getSellerOrders } from '../services/api';
 import NavBarNew from '../Components/newComponents/NabBar';
+import Orders from '../Components/newComponents/Orders';
 
 function SellerOrders() {
   const [sales, setSales] = useState([]);
+  const user = JSON.parse(localStorage.getItem('user'));
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const getAllSales = async () => {
-      let request = await getSellerOrders(user.token);
-      console.log(request);
-      request = request.filter(({ seller }) => seller.name === user.name);
-      setSales(request);
-    };
-    getAllSales();
+  useEffect(async () => {
+    setSales(await getSellerOrders(user.token));
   }, []);
 
   // vraw ta dando ruim
@@ -70,6 +65,7 @@ function SellerOrders() {
       <div className="all-cards">
         {console.log(sales)}
         {salesRender()}
+        <Orders />
       </div>
     </>
   );
