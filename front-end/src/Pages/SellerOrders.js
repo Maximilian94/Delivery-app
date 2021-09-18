@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 // import CardStatus from '../Components/Organisms/CardStatus';
 import NavBar from '../Components/newComponents/NabBarAdmin';
 import { getCostumerOrders } from '../services/api';
+import NavBarNew from '../Components/newComponents/NabBar';
 
 function SellerOrders() {
   const [sales, setSales] = useState([]);
@@ -72,7 +73,7 @@ function SellerOrders() {
 
   return (
     <>
-      {console.log(sales)}
+      <NavBarNew />
       <NavBar
         links={ linksNavbar }
         user={ name }

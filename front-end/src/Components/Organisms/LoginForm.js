@@ -47,7 +47,9 @@ function LoginFormComponent({ title }) {
         message: 'Login ou senha inválidos! :(',
       });
     }
+
     localStorage.setItem('user', JSON.stringify(response));
+
     if (response.role === 'customer') {
       history.push('/customer/products');
     } else if (response.role === 'seller') {

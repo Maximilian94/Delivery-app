@@ -4,6 +4,7 @@ import './style.css';
 
 function Navigators() {
   const currentPath = window.location.pathname;
+  const userType = JSON.parse(localStorage.getItem('user')).role;
 
   const isActualPage = (linkToUrl) => {
     if (linkToUrl === currentPath) {
@@ -11,23 +12,45 @@ function Navigators() {
     }
   };
 
+  const links = (pageName, linkTitle) => (
+    <Link
+      className={ `navbar-navigators-links ${isActualPage(`/${userType}/${pageName}`)}` }
+      to={ `/${userType}/${pageName}` }
+      data-testid={ `${userType}_products__element-navbar-link-${pageName}` }
+    >
+      <span>{linkTitle}</span>
+    </Link>
+  );
+
+  const LinksPages = {
+    orders: { pageName: 'orders', linkTitle: 'Meus pedidos' },
+    products: { pageName: 'products', linkTitle: 'Produtos' },
+  };
+
+  const LinksByUserType = {
+    customer: [
+      LinksPages.products,
+      LinksPages.orders,
+    ],
+    seller: [
+      LinksPages.orders,
+    ],
+  };
+
+  const generateLinks = () => {
+    if (!LinksByUserType[userType]) {
+      return alert('Verifique com a administração seu tipo de usuario');
+    }
+
+    return LinksByUserType[userType].map(({ pageName, linkTitle }) => (
+      links(pageName, linkTitle)
+    ));
+  };
+
   return (
     <div className="navbar-navigators-div">
-      {console.log(currentPath)}
-      <Link
-        className={ `navbar-navigators-links ${isActualPage('/customer/products')}` }
-        to="/customer/products"
-        data-testid="customer_products__element-navbar-link-products"
-      >
-        <span>Produtos</span>
-      </Link>
-      <Link
-        className={ `navbar-navigators-links ${isActualPage('/customer/orders')}` }
-        to="/customer/orders"
-        data-testid="customer_products__element-navbar-link-orders"
-      >
-        <span>Meus pedidos</span>
-      </Link>
+      {console.log(userType)}
+      {generateLinks()}
     </div>
   );
 }
