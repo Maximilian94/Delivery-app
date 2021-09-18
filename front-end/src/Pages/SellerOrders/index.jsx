@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getSellerOrders } from '../services/api';
-import NavBarNew from '../Components/newComponents/NabBar';
-import Orders from '../Components/newComponents/Orders';
+import { getSellerOrders } from '../../services/api';
+import NavBarNew from '../../Components/newComponents/NabBar';
+import Orders from '../../Components/newComponents/Orders';
+import './style.css';
 
 function SellerOrders() {
   const [sales, setSales] = useState([]);
@@ -62,7 +63,7 @@ function SellerOrders() {
   return (
     <>
       <NavBarNew />
-      <div className="all-cards">
+      <div className="seller-orders-page">
         {console.log(sales)}
         {salesRender()}
         <Orders />
