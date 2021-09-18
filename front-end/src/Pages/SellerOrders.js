@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import CardStatus from '../Components/Organisms/CardStatus';
-import NavBar from '../Components/newComponents/NabBarAdmin';
-import { getCostumerOrders } from '../services/api';
+import { getSellerOrders } from '../services/api';
 import NavBarNew from '../Components/newComponents/NabBar';
 
 function SellerOrders() {
   const [sales, setSales] = useState([]);
-  const [name, setName] = useState('');
-  const linksNavbar = [{
-    text: 'pedido',
-    url: 'https://localhost:3000',
-  }];
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    setName(user.name);
     const getAllSales = async () => {
-      let request = await getCostumerOrders(user.token);
+      let request = await getSellerOrders(user.token);
+      console.log(request);
       request = request.filter(({ seller }) => seller.name === user.name);
       setSales(request);
     };
@@ -74,11 +67,8 @@ function SellerOrders() {
   return (
     <>
       <NavBarNew />
-      <NavBar
-        links={ linksNavbar }
-        user={ name }
-      />
       <div className="all-cards">
+        {console.log(sales)}
         {salesRender()}
       </div>
     </>

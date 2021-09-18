@@ -62,10 +62,25 @@ const getCostumerOrders = async (userId) => {
   return findSales;
 }
 
+const getSellerOrders = async (seller_id) => {
+  const findSales = await sale.findAll({
+    include: [
+      { model: user, as: 'user', attributes: { exclude: ['password'] } },
+      { model: user, as: 'seller', attributes: { exclude: ['password'] } },
+      { model: product, as: 'product', through: { attributes: ['quantity'] } },
+    ],
+    where: {
+      seller_id: seller_id,
+    }
+  });
+  return findSales;
+}
+
 module.exports = {
   create,
   findByPk,
   findAll,
   updateStatus,
   getCostumerOrders,
+  getSellerOrders,
 };

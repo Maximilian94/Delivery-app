@@ -48,10 +48,22 @@ const getCostumerOrders = async (req, res, next) => {
   }
 }
 
+const getSellerOrders = async (req, res, next) => {
+  try {
+    const { user: { id } } = req;
+    const sellerOrders = await salesService.getSellerOrders(id);
+    console.log(sellerOrders);
+    return res.status(200).json(sellerOrders);
+  } catch (error) {
+    return next(error);
+  }
+}
+
 module.exports = {
   create,
   getById,
   findAll,
   updateSaleStatus,
   getCostumerOrders,
+  getSellerOrders,
 };

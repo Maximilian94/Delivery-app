@@ -75,6 +75,12 @@ export const getCostumerOrders = async (token) => {
   return response;
 };
 
+export const getSellerOrders = async (token) => {
+  const request = await fetch('http://localhost:3001/sale/seller-orders', options('GET', null, token));
+  const response = await request.json();
+  return response;
+};
+
 export const getImg = async (token, imgPath) => {
   const request = await fetch(imgPath, options('GET', null, token));
   const response = await request.json();
