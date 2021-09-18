@@ -47,6 +47,16 @@ function CardCostumerOrder(selectOrder) {
     </div>
   );
 
+  const address = () => {
+    if (userType === 'seller') {
+      return (
+        <div className="order-card-address">
+          <span>{ `${deliveryAddress}, ${deliveryNumber}` }</span>
+        </div>
+      );
+    }
+  };
+
   return (
     <Link to={ `/${userType}/orders/${id}` } className="order-card">
       {cardIdentification()}
@@ -55,9 +65,7 @@ function CardCostumerOrder(selectOrder) {
           {cardStatus()}
           {cardDataAndPrice()}
         </div>
-        <div className="order-card-address">
-          <span>{ `${deliveryAddress}, ${deliveryNumber}` }</span>
-        </div>
+        {address()}
       </div>
     </Link>
   );
