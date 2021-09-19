@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import style from '../../../styles/funcstions';
 import './style.css';
 
 function CardCostumerOrder(selectOrder) {
@@ -29,8 +31,13 @@ function CardCostumerOrder(selectOrder) {
   );
 
   const cardStatus = () => (
-    <div className="order-card-status pending">
+    // <div className={ `order-card-status ${style.orderStatusClassName(status)}` }>
+    <div
+      className="order-card-status"
+      style={ { backgroundColor: `${style.colorByOrderStatus(status)}` } }
+    >
       <span data-testid={ `${userType}_orders__element-delivery-status-${id}` }>
+        {console.log(style)}
         { status }
       </span>
     </div>

@@ -6,7 +6,7 @@
 .order-details-div {
   background-color: #1F1D2B;
   display: flex;
-  width: 800px;
+  justify-content: center;
 }
 
 .order-details-div > span {
@@ -20,7 +20,6 @@
   align-items: center;
   color: white;
   text-align: center;
-  width: 800px;
 }
 
 .order-details-div-header-colum {
@@ -38,7 +37,17 @@
 }
 
 .order-status.pending {
+  background-color: #EA7C69;
+  color: #1F1D2B;
+}
+
+.order-status.preparing {
   background-color: #EACE69;
+  color: #1F1D2B;
+}
+
+.order-status.transit {
+  background-color: #5CFF5C;
   color: #1F1D2B;
 }
 
