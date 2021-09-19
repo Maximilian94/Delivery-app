@@ -1,38 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import Pending from './Pending';
-import Preparing from './Preparing';
+import image from '../../../../images/box.png';
 
 import './style.css';
 
 function PrepareOrderButton(props) {
   const { detailsOrder } = props;
 
-  const buttonByOrderStatus = () => {
+  const classOrderStatus = () => {
     if (!detailsOrder) return;
     const { status } = detailsOrder;
-    console.log(status);
 
     switch (status) {
     case 'Pendente':
-      return <Pending />;
-
-    case 'Preparando':
-      return <Preparing />;
-
-    case 'Em Trânsito':
-      return <Preparing />;
+      return { button: 'pending', img: 'no-color', disabled: false };
 
     default:
-      return null;
+      return { button: null, img: null, disabled: true };
     }
   };
 
+  const { button, disabled, img } = classOrderStatus();
+
   return (
-    <div>
-      {buttonByOrderStatus()}
-    </div>
+    <button
+      type="button"
+      className={ `button-order prepare ${button} ` }
+      disabled={ disabled }
+      onClick={ () => console.log('Aoba') }
+    >
+      <img src={ image } alt="deliver-order" className={ `${img}` } />
+      <span>Preparar pedido</span>
+    </button>
   );
 }
 
