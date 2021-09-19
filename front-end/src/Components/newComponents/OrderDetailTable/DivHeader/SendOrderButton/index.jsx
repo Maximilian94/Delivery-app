@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ImageDeliverOrder from '../../../../images/delivery-truck.png';
+import ImageDeliverOrder from '../../../../../images/delivery-truck.png';
 
-import { editStatusOrder } from '../../../../services/api';
+import { editStatusOrder } from '../../../../../services/api';
 
 import './style.css';
 

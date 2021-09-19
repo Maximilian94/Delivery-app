@@ -23,7 +23,6 @@ function SellerDetails() {
 
   const allDataIds = (key, index) => {
     const dataIds = {
-      dispatch: 'seller_order_details__button-dispatch-check',
       item: `seller_order_details__element-order-table-item-number-${index}`,
       name: `seller_order_details__element-order-table-name-${index}`,
       quantity: `seller_order_details__element-order-table-quantity-${index}`,

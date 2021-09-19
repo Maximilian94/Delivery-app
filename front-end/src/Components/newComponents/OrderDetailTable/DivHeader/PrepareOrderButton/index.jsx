@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import image from '../../../../images/box.png';
+import image from '../../../../../images/box.png';
 
-import { editStatusOrder } from '../../../../services/api';
+import { editStatusOrder } from '../../../../../services/api';
 import './style.css';
 
 const dataTestId = 'seller_order_details__button-preparing-check';
