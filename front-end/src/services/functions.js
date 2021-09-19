@@ -1,5 +1,5 @@
 export const formatDate = (dateBD) => {
-  console.log(dateBD);
+  if (!dateBD) return 'no data';
   const data = (dateBD.split('T'))[0].split('-');
   return data.reverse().join('/');
 };

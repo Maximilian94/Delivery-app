@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { formatDate } from '../../../services/functions';
+
 import SendOrderButton from './SendOrderButton';
 import PrepareOrderButton from './PrepareOrderButton';
 import OrderId from './OrderId';
@@ -11,13 +13,13 @@ import './style.css';
 
 function OrderDetailTable(props) {
   const { detailsOrder = [] } = props;
-  const { status, id } = detailsOrder;
+  const { status, id, saleDate } = detailsOrder;
 
   const orderDivHeader = () => (
     <div className="order-details-div-header">
       <div className="order-details-div-header-colum">
         <OrderId id={ id } />
-        <Date date="20/04/1994" />
+        <Date date={ formatDate(saleDate) } />
       </div>
       <div className="order-details-div-header-colum">
         <div
