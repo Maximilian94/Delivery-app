@@ -5,10 +5,12 @@ import image from '../../../../images/box.png';
 import { editStatusOrder } from '../../../../services/api';
 import './style.css';
 
+const dataTestId = 'seller_order_details__button-preparing-check';
+
 function PrepareOrderButton(props) {
   const { detailsOrder } = props;
 
-  const classOrderStatus = () => {
+  const classByOrderStatus = () => {
     if (!detailsOrder) return;
     const { status } = detailsOrder;
 
@@ -31,7 +33,7 @@ function PrepareOrderButton(props) {
     }
   };
 
-  const { button, disabled, img } = classOrderStatus();
+  const { button, disabled, img } = classByOrderStatus();
 
   return (
     <button
@@ -39,6 +41,7 @@ function PrepareOrderButton(props) {
       className={ `button-order prepare ${button} ` }
       disabled={ disabled }
       onClick={ () => prepareOrder() }
+      data-testid={ dataTestId }
     >
       <img src={ image } alt="deliver-order" className={ `${img}` } />
       <span>Preparar pedido</span>

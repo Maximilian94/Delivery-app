@@ -7,8 +7,8 @@ import SendOrderButton from './SendOrderButton';
 import PrepareOrderButton from './PrepareOrderButton';
 import OrderId from './OrderId';
 import Date from './Date';
+import Status from './Status';
 
-import style from '../../../styles/funcstions';
 import './style.css';
 
 function OrderDetailTable(props) {
@@ -22,12 +22,7 @@ function OrderDetailTable(props) {
         <Date date={ formatDate(saleDate) } />
       </div>
       <div className="order-details-div-header-colum">
-        <div
-          className="order-status"
-          style={ { backgroundColor: `${style.colorByOrderStatus(status)}` } }
-        >
-          <span>{ status }</span>
-        </div>
+        <Status status={ status } />
       </div>
       <div className="order-details-div-header-colum">
         <PrepareOrderButton detailsOrder={ detailsOrder } />

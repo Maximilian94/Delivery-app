@@ -7,24 +7,6 @@ button.button-order.prepare {
   background-color: #5CFF5C;
   color: black;
   cursor: default;
-
-  border: solid 1px #f39c12;
-  box-shadow: 1px 4px 0 #d35400;
-  transition: all 0.1s;
-
-  -moz-transition: all 0.1s;
-  -moz-box-shadow: 1px 4px 0 #d35400;
-  -webkit-box-shadow: 1px 4px 0 #d35400;
-  -webkit-transition: all 0.1s;
-}
-
-button.button-order.prepare:active, button.button-order.prepare:disabled {
-  box-shadow: 0 1px 0 #d35400;
-  position: relative;
-  top: 4px;
-
-  -webkit-box-shadow: 0 1px 0 #d35400;
-  -moz-box-shadow: 0 1px 0 #d35400;
 }
 
 

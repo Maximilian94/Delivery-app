@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import NavBar from '../../Components/newComponents/NabBar';
-import { editStatusOrder, saleById } from '../../services/api';
-import { formatDate, formatPrice } from '../../services/functions';
+import { saleById } from '../../services/api';
+import { formatPrice } from '../../services/functions';
 import PageTitle from '../../Components/newComponents/PageTitle';
 import OrderDetailTable from '../../Components/newComponents/OrderDetailTable';
 import './style.css';
@@ -23,11 +23,6 @@ function SellerDetails() {
 
   const allDataIds = (key, index) => {
     const dataIds = {
-      orderId: 'seller_order_details__element-order-details-label-order-id',
-      orderDate: 'seller_order_details__element-order-details-label-order-date',
-      deliveryStatus:
-        'seller_order_details__element-order-details-label-delivery-status',
-      preparing: 'seller_order_details__button-preparing-check',
       dispatch: 'seller_order_details__button-dispatch-check',
       item: `seller_order_details__element-order-table-item-number-${index}`,
       name: `seller_order_details__element-order-table-name-${index}`,
@@ -38,15 +33,6 @@ function SellerDetails() {
     };
 
     return dataIds[key];
-  };
-
-  const changeStatusOrder = async ({ target: { textContent } }) => {
-    const status = textContent === 'Preparar Pedido' ? 'Preparando' : 'Em Trânsito';
-    const user = JSON.parse(localStorage.getItem('user'));
-    const request = await editStatusOrder(user.token, { id, status });
-    if (request.message === 'Preparando' || request.message === 'Em Trânsito') {
-      setDetailsOrder({ ...detailsOrder, status: request.message });
-    }
   };
 
   useEffect(() => {
@@ -68,42 +54,6 @@ function SellerDetails() {
           <OrderDetailTable detailsOrder={ detailsOrder } />
           {detailsOrder && (
             <>
-              <ul>
-                <li>
-                  Pedido
-                  <span data-testid={ allDataIds('orderId') }>{detailsOrder.id}</span>
-                </li>
-                <li data-testid={ allDataIds('orderDate') }>
-                  {formatDate(detailsOrder.saleDate)}
-                </li>
-                <li data-testid={ allDataIds('deliveryStatus') }>
-                  {detailsOrder.status}
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    data-testid={ allDataIds('preparing') }
-                    disabled={
-                      detailsOrder.status !== 'Pendente' ? 'disabled' : ''
-                    }
-                    onClick={ changeStatusOrder }
-                  >
-                    Preparar Pedido
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    data-testid={ allDataIds('dispatch') }
-                    disabled={
-                      detailsOrder.status !== 'Preparando' ? 'disabled' : ''
-                    }
-                    onClick={ changeStatusOrder }
-                  >
-                    Saiu para Entrega
-                  </button>
-                </li>
-              </ul>
               <table>
                 <thead>
                   <tr>
