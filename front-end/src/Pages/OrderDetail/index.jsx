@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { saleById, editStatusOrder } from '../services/api';
-import NavBar from '../Components/newComponents/NabBar';
+import { saleById, editStatusOrder } from '../../services/api';
+import NavBar from '../../Components/newComponents/NabBar';
+import './style.css';
 
 function OrderDetail() {
   const [sale, setSale] = useState();
@@ -136,8 +137,7 @@ function OrderDetail() {
   );
 
   return (
-    <div>
-      {console.log('se repetir é loop')}
+    <div className="order-detail-page">
       <NavBar />
       <h1>Detalhes do Pedido</h1>
       {sale && renderInfo()}

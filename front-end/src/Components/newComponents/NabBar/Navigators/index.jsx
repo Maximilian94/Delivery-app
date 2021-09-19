@@ -49,7 +49,6 @@ function Navigators() {
 
   return (
     <div className="navbar-navigators-div">
-      {console.log(userType)}
       {generateLinks()}
     </div>
   );

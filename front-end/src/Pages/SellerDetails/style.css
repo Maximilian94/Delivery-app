@@ -1,0 +1,58 @@
+.seller-order-page {
+  background-color: #252836;
+  min-height: 100vh;
+}
+
+.order-details-div {
+  background-color: #1F1D2B;
+  display: flex;
+  width: 800px;
+}
+
+.order-details-div > span {
+  background-color: white;
+  display: inline;
+}
+
+.order-details-div-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  text-align: center;
+  width: 800px;
+}
+
+.order-details-div-header-colum {
+  margin: 5px 10px;
+  display: flex;
+}
+
+.order-details-div-header-colum > div {
+  margin: 5px 10px;
+}
+
+.order-status {
+  border-radius: 8px;
+  padding: 5px 30px;
+}
+
+.order-status.pending {
+  background-color: #EACE69;
+  color: #1F1D2B;
+}
+
+/* .order-details-div-header-colum button.preparing {
+  background-color: #88989888;
+  cursor: default;
+}
+
+.order-details-div-header-colum button.transit {
+  background-color: #6BE2BE;
+  cursor: default;
+}
+
+.order-details-div-header-colum button span {
+  margin: 0 5px;
+}
+*/
