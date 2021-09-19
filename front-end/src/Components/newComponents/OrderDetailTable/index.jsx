@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import SendOrderButton from './SendOrderButton';
 import PrepareOrderButton from './PrepareOrderButton';
+import OrderId from './OrderId';
+import Date from './Date';
 
 import style from '../../../styles/funcstions';
 import './style.css';
@@ -14,8 +16,8 @@ function OrderDetailTable(props) {
   const orderDivHeader = () => (
     <div className="order-details-div-header">
       <div className="order-details-div-header-colum">
-        <div><span>{`Pedido ${id}`}</span></div>
-        <div>02/04/2020</div>
+        <OrderId id={ id } />
+        <Date date="20/04/1994" />
       </div>
       <div className="order-details-div-header-colum">
         <div
