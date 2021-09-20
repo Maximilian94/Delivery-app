@@ -2,6 +2,8 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
+import './style.css';
+
 import { formatPrice } from '../../../../services/functions';
 
 const getDataTestId = (key, index) => {
@@ -72,7 +74,7 @@ function Table(props) {
           </tr>
         ))}
       </tbody>
-      <div data-testid={ getDataTestId('total') }>
+      <div data-testid={ getDataTestId('total') } className="order-table-total-price">
         {`Total: ${formatPrice(totalOrderPrice(items))}`}
       </div>
     </table>
