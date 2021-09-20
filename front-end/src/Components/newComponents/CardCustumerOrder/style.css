@@ -5,6 +5,7 @@
   display: flex;
   text-decoration: none;
   margin: 10px;
+  color: black;
 }
 
 .order-card-identification {
