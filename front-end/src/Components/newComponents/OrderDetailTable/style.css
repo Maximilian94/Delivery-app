@@ -1,3 +1,9 @@
+.order-details-div {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
 .order-status {
   color: black;
 }

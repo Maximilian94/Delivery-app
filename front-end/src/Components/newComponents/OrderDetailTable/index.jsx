@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 
 import './style.css';
 import DivHeader from './DivHeader';
+import Table from './Table';
 
 function OrderDetailTable(props) {
   const { detailsOrder = [] } = props;
 
-  const orderTable = () => <p>Aoba</p>;
-
   return (
     <div className="order-details-div">
       <DivHeader detailsOrder={ detailsOrder } />
-      {orderTable()}
+      <Table items={ detailsOrder.product } />
     </div>
   );
 }
