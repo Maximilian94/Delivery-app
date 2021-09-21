@@ -5,7 +5,11 @@ import cartIcon from '../../../images/grocery-cart.png';
 import './style.css';
 
 function CartButton() {
-  const { totalPrice } = useCart();
+  const { cartItems } = useCart();
+
+  const totalPrice = cartItems.reduce(
+    (acc, curr) => acc + curr.price * curr.quantity, 0,
+  );
   const convertDotToComma = (string) => string.replace(/\./g, ',');
   const price = convertDotToComma(parseFloat(totalPrice).toFixed(2));
 
