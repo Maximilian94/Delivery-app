@@ -5,8 +5,6 @@ import ImageDeliverOrder from '../../../../../images/delivery-truck.png';
 
 import { editStatusOrder } from '../../../../../services/api';
 
-import './style.css';
-
 const dataTestId = 'seller_order_details__button-dispatch-check';
 
 function SendOrderButton(props) {

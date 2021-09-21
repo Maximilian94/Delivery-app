@@ -1,3 +1,12 @@
+.button-order.prepare.pending {
+  cursor: pointer;
+}
+
+button.button-order.prepare {
+  background-color: #5CFF5C;
+  color: black;
+}
+
 .button-order {
   display: flex;
   align-items: center;
@@ -17,6 +26,14 @@
   -moz-box-shadow: 1px 4px 0 #d35400;
   -webkit-box-shadow: 1px 4px 0 #d35400;
   -webkit-transition: all 0.1s;
+}
+
+button.button-order:disabled {
+  cursor: default;
+}
+
+button.button-order:enabled {
+  background-color: #9290FE;
 }
 
 button.button-order:active, button.button-order:disabled {
@@ -39,29 +56,9 @@ button.button-order > img.no-color {
   transition: 0.2s;
 }
 
-button.button-order > span {
-  margin: 0 5px;
-}
-
-.button-order.deliver.pending {
-  background-color: #88989888;
-  cursor: default;
-}
-
-
-.button-order.deliver.preparing {
-  background-color: #9290FE;
-  color: black;
-}
-
-.button-order.deliver.transit {
-  background-color: #5CFF5C;
-  color: black;
-  cursor: default;
-}
-
-
-.button-order.deliver.preparing:hover img {
+.button-order.prepare.pending:hover img,
+.button-order.deliver.preparing:hover img,
+.button-order.received.transit:hover img {
   /* Start the shake animation and make the animation last for 0.5 seconds */
   animation: shake 0.5s;
 
@@ -84,4 +81,27 @@ button.button-order > span {
   80% { transform: translate(-1px, -1px) rotate(1deg); }
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+button.button-order > span {
+  margin: 0 5px;
+}
+
+.button-order.deliver.pending {
+  background-color: #88989888;
+}
+
+
+.button-order.deliver.preparing {
+  color: black;
+}
+
+.button-order.deliver.transit {
+  background-color: #5CFF5C;
+  color: black;
+}
+
+.button-order.received.delivered {
+  background-color: #5CFF5C;
+  color: black;
 }
