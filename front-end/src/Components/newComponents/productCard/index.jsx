@@ -4,8 +4,16 @@ import { useCart } from '../../../Contexts/CartContext';
 import './style.css';
 
 function ProductCard({ product }) {
-  const [counter, setCounter] = useState(0);
   const { totalPrice, setTotalPrice, setCartItems, cartItems } = useCart();
+  const { id: productId } = product;
+  const itemData = cartItems.find((data) => data.id === productId);
+
+  const getQuantity = () => {
+    if (itemData) return itemData.quantity;
+    return 0;
+  };
+
+  const [counter, setCounter] = useState(getQuantity());
 
   const increment = () => {
     const price = Number(parseFloat(product.price).toFixed(2));

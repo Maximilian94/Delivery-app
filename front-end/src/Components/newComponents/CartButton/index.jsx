@@ -28,7 +28,7 @@ function CartButton() {
           data-testid="customer_products__checkout-bottom-value"
           className="cart-button-price"
         >
-          {` ${price}`}
+          {`R$: ${price}`}
         </span>
       </Link>
     </button>
