@@ -1,0 +1,30 @@
+.order-details-address {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.order-details-forms {
+  background-color: #1f1d2b;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.order-details-forms label {
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
+}
+
+.order-details-forms label span {
+  padding: 5px;
+  color: white;
+}
+
+.order-details-forms select, .order-details-forms input {
+  border-radius: 8px;
+  padding: 5px;
+  color: #E0E6E9;
+  background-color: #2D303E;
+  border: 2px solid #393C49;
+}
