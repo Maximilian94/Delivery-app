@@ -8,7 +8,7 @@ import './style.css';
 
 export default function OrderForms() {
   const history = useHistory();
-  const { totalPrice, cartItems } = useContext(CartContext);
+  const { totalPrice, cartItems, setCartItems } = useContext(CartContext);
 
   const sellersSimulator = [
     {
@@ -84,7 +84,10 @@ export default function OrderForms() {
 
     const response = await finishOrder(orderInfo); // retorna { saleId }
 
-    return !response.message && history.push(`/customer/orders/${response.saleId}`);
+    if (response.saleId) {
+      setCartItems([]);
+      return !response.message && history.push(`/customer/orders/${response.saleId}`);
+    }
   };
 
   const sellersSelect = () => (
