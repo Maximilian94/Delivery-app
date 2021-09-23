@@ -17,16 +17,24 @@ export function SocketProvider({ children }) {
     socket.emit('newOrder', sellerId);
   };
 
+  const socketUpdateOrder = ({ sellerId, userId }) => {
+    socket.emit('updateOrder', { sellerId, userId });
+  };
+
   // const socketNewOrderReceived = () => {
   //   socket.on('newOrderReceived', () => console.log('Novo pedido recebido'));
   // }
+
+  socket.on('updateOrders', () => console.log('Atualiza ordens'));
 
   if (user) {
     socket.emit('userConnected', { ...user });
   }
 
   const context = {
-    socket, socketNewOrder,
+    socket,
+    socketNewOrder,
+    socketUpdateOrder,
   };
 
   return (

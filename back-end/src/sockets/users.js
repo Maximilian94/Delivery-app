@@ -13,7 +13,6 @@ const connectNewUser = (data, socket) => {
 
 module.exports = (io) => io.on('connection', (socket) => {
   const updateSellerOrders = (sellerId) => {
-    console.log('Envia ordem de atualização');
     const sellerSocketsUser = usersSocketsOnline.filter((data) => data.userId === sellerId);
 
     sellerSocketsUser.forEach((sellerConnection) => {
@@ -21,10 +20,23 @@ module.exports = (io) => io.on('connection', (socket) => {
     })
   };
 
+  const updateOrder = ({sellerId, userId}) => {
+    const socketsToSend = usersSocketsOnline.filter((data) => {
+      return data.userId === sellerId ||data.userId === userId;
+    });
+
+    socketsToSend.forEach((onlineSocket) => {
+      io.to(onlineSocket.socketId).emit('updateOrders');
+    })
+    console.log('Atualiza detalhes de uma ordem');
+  }
+
   socket.on('userConnected', (data) => connectNewUser(data, socket));
 
   socket.on('disconnect', () => removeOnlineUser(socket.id));
 
   socket.on('newOrder', (sellerId) => updateSellerOrders(sellerId));
+
+  socket.on('updateOrder', ({sellerId, userId}) => updateOrder({sellerId, userId}));
 
 });

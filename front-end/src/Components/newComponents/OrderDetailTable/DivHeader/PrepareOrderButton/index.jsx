@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import image from '../../../../../images/box.png';
 
 import { editStatusOrder } from '../../../../../services/api';
+import { useSocket } from '../../../../../socket/socket';
 
 const dataTestId = 'seller_order_details__button-preparing-check';
 
 function PrepareOrderButton(props) {
   const { detailsOrder } = props;
+  const { socketUpdateOrder } = useSocket();
 
   const classByOrderStatus = () => {
     if (!detailsOrder) return;
@@ -24,11 +26,11 @@ function PrepareOrderButton(props) {
 
   const prepareOrder = async () => {
     if (!detailsOrder) return;
-    const { status, id } = detailsOrder;
+    const { status, id, userId, sellerId } = detailsOrder;
     if (status === 'Pendente') {
       const user = JSON.parse(localStorage.getItem('user'));
       await editStatusOrder(user.token, { id, status: 'Preparando' });
-      window.location.reload();
+      socketUpdateOrder({ sellerId, userId });
     }
   };
 
