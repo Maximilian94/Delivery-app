@@ -3,12 +3,15 @@ import { useHistory } from 'react-router-dom';
 
 import { getSellers, finishOrder } from '../../../services/api';
 import { CartContext } from '../../../Contexts/CartContext';
+import { useSocket } from '../../../socket/socket';
 
 import './style.css';
 
 export default function OrderForms() {
   const history = useHistory();
   const { totalPrice, cartItems, setCartItems } = useContext(CartContext);
+  const { socket, socketNewOrder } = useSocket();
+  console.log(socket);
 
   const sellersSimulator = [
     {
@@ -85,6 +88,7 @@ export default function OrderForms() {
     const response = await finishOrder(orderInfo); // retorna { saleId }
 
     if (response.saleId) {
+      socketNewOrder(orderInfo.sellerId);
       setCartItems([]);
       return !response.message && history.push(`/customer/orders/${response.saleId}`);
     }
