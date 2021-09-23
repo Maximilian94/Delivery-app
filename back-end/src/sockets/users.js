@@ -6,6 +6,7 @@ const removeOnlineUser = (socketId) => {
 };
 
 const connectNewUser = (data, socket) => {
+  console.log(data);
   usersSocketsOnline.push({...data, socketId: socket.id});
 };
 

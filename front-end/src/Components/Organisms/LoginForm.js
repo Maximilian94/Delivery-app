@@ -9,7 +9,10 @@ import { FormElement } from '../styles';
 import validation from '../../validation/userValidation';
 import { userLogin } from '../../services/api';
 
+import { useSocket } from '../../socket/socket';
+
 function LoginFormComponent({ title }) {
+  const { socketLogin } = useSocket();
   const inicialFormData = {
     login: '',
     password: '',
@@ -47,8 +50,9 @@ function LoginFormComponent({ title }) {
         message: 'Login ou senha inválidos! :(',
       });
     }
-
+    console.log(response);
     localStorage.setItem('user', JSON.stringify(response));
+    socketLogin(response);
 
     if (response.role === 'customer') {
       history.push('/customer/products');

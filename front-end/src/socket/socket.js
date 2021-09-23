@@ -21,6 +21,10 @@ export function SocketProvider({ children }) {
     socket.emit('updateOrder', { sellerId, userId });
   };
 
+  const socketLogin = (userData) => {
+    socket.emit('userConnected', { ...userData });
+  };
+
   // const socketNewOrderReceived = () => {
   //   socket.on('newOrderReceived', () => console.log('Novo pedido recebido'));
   // }
@@ -33,6 +37,7 @@ export function SocketProvider({ children }) {
     socket,
     socketNewOrder,
     socketUpdateOrder,
+    socketLogin,
   };
 
   return (
