@@ -3,8 +3,12 @@ import { getCostumerOrders, getSellerOrders } from '../../../services/api';
 import CardCostumerOrder from '../CardCustumerOrder';
 import './style.css';
 
+import { useSocket } from '../../../socket/socket';
+
 function Orders() {
   const [listOrders, setListOrders] = useState([]);
+  const { socket } = useSocket();
+
   const userType = JSON.parse(localStorage.getItem('user')).role;
   const { token } = JSON.parse(localStorage.getItem('user'));
 
@@ -24,6 +28,8 @@ function Orders() {
   useEffect(async () => {
     setListOrders(await fetchOrders());
   }, []);
+
+  socket.on('newOrderReceived', async () => setListOrders(await fetchOrders()));
 
   return (
     <div className="orders-div">
