@@ -12,6 +12,17 @@ const sellerController = require('../controllers/sellerController');
 const port = process.env.PORT || 3001;
 const app = require('./app');
 
+//  Socket.io
+const server = app.listen(port);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: 'http://localhost:3000',
+    method: ['GET', 'POST'],
+  },
+});
+
+require('../sockets/users')(io);
+
 app.use(bodyParser.json());
 
 app.post('/register', registerController.createUser);
@@ -28,7 +39,5 @@ app.use((err, _req, res, _next) => {
   if (err.status) return res.status(err.status).json({ message: err.message });
   return res.status(500).json({ message: err.message });
 });
-
-app.listen(port);
 
 console.log(`pai ta on na porta ${port}`);
