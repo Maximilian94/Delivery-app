@@ -25,8 +25,6 @@ export function SocketProvider({ children }) {
   //   socket.on('newOrderReceived', () => console.log('Novo pedido recebido'));
   // }
 
-  socket.on('updateOrders', () => console.log('Atualiza ordens'));
-
   if (user) {
     socket.emit('userConnected', { ...user });
   }

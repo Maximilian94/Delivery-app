@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import NavBar from '../../Components/newComponents/NabBar';
-import { saleById } from '../../services/api';
 import PageTitle from '../../Components/newComponents/PageTitle';
 import OrderDetailTable from '../../Components/newComponents/OrderDetailTable';
 import './style.css';
 
+import { useOrders } from '../../Contexts/OrdersContext';
+
 function SellerDetails() {
   const { id } = useParams();
   const [name, setName] = useState('');
-  const [detailsOrder, setDetailsOrder] = useState();
+  const { orderDetail, updateOrderDetail } = useOrders();
   const linksNavbar = [
     {
       text: 'pedido',
@@ -22,12 +23,11 @@ function SellerDetails() {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     setName(user.name);
-    const getSaleDetails = async () => {
-      const request = await saleById(id, user.token);
-      setDetailsOrder(request);
-    };
-    getSaleDetails();
   }, [id]);
+
+  useEffect(async () => {
+    updateOrderDetail();
+  }, []);
 
   return (
     <div className="seller-order-page">
@@ -35,7 +35,7 @@ function SellerDetails() {
       <div className="content">
         <PageTitle title="Detalhe do pedido" />
         <div>
-          <OrderDetailTable detailsOrder={ detailsOrder } />
+          <OrderDetailTable detailsOrder={ orderDetail } />
         </div>
       </div>
     </div>

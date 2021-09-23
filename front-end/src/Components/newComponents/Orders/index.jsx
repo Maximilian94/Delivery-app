@@ -1,35 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { getCostumerOrders, getSellerOrders } from '../../../services/api';
+import React, { useEffect } from 'react';
 import CardCostumerOrder from '../CardCustumerOrder';
 import './style.css';
 
 import { useSocket } from '../../../socket/socket';
+import { useOrders } from '../../../Contexts/OrdersContext';
 
 function Orders() {
-  const [listOrders, setListOrders] = useState([]);
+  const { orders, updateOrders } = useOrders();
+  console.log(orders);
   const { socket } = useSocket();
 
-  const userType = JSON.parse(localStorage.getItem('user')).role;
-  const { token } = JSON.parse(localStorage.getItem('user'));
-
-  const fetchOrders = async () => {
-    switch (userType) {
-    case 'seller':
-      return getSellerOrders(token);
-
-    case 'customer':
-      return getCostumerOrders(token);
-
-    default:
-      return [];
-    }
-  };
-
   useEffect(async () => {
-    setListOrders(await fetchOrders());
+    await updateOrders();
   }, []);
 
-  socket.on('newOrderReceived', async () => setListOrders(await fetchOrders()));
+  socket.on('newOrderReceived', async () => updateOrders());
 
   return (
     <div className="orders-div">
@@ -37,7 +22,7 @@ function Orders() {
         <span>Escolha sua bebida</span>
       </div>
       <div className="orders-list">
-        {listOrders.map((order) => (
+        {orders.map((order) => (
           <CardCostumerOrder selectOrder={ order } key={ order.id } />
         ))}
       </div>
