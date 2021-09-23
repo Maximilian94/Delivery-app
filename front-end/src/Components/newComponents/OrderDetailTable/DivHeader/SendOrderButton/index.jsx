@@ -4,19 +4,21 @@ import PropTypes from 'prop-types';
 import ImageDeliverOrder from '../../../../../images/delivery-truck.png';
 
 import { editStatusOrder } from '../../../../../services/api';
+import { useSocket } from '../../../../../socket/socket';
 
 const dataTestId = 'seller_order_details__button-dispatch-check';
 
 function SendOrderButton(props) {
   const { detailsOrder } = props;
+  const { socketUpdateOrder } = useSocket();
 
   const sendOrder = async () => {
     if (!detailsOrder) return;
-    const { status, id } = detailsOrder;
+    const { status, id, userId, sellerId } = detailsOrder;
     if (status === 'Preparando') {
       const user = JSON.parse(localStorage.getItem('user'));
       await editStatusOrder(user.token, { id, status: 'Em Trânsito' });
-      window.location.reload();
+      socketUpdateOrder({ sellerId, userId });
     }
   };
 

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { editStatusOrder } from '../../../../../services/api';
 
+import { useSocket } from '../../../../../socket/socket';
+
 import boxClosed from '../../../../../images/icons8-produto-usado-96.png';
 import boxOpened from '../../../../../images/icons8-caixa-vazia-96.png';
 
@@ -9,13 +11,15 @@ function ReceivedButton(props) {
   const { detailsOrder } = props;
   const [image, setImage] = useState(boxClosed);
 
+  const { socketUpdateOrder } = useSocket();
+
   const receivedOrder = async () => {
     if (!detailsOrder) return;
-    const { status, id } = detailsOrder;
+    const { status, id, userId, sellerId } = detailsOrder;
     if (status === 'Em Trânsito') {
       const user = JSON.parse(localStorage.getItem('user'));
       await editStatusOrder(user.token, { id, status: 'Entregue' });
-      window.location.reload();
+      socketUpdateOrder({ sellerId, userId });
     }
   };
 
