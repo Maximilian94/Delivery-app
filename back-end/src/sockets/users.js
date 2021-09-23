@@ -1,18 +1,30 @@
-const usersOnline = []
+//  User
+let usersSocketsOnline = [];
+
+const removeOnlineUser = (socketId) => {
+  usersSocketsOnline = usersSocketsOnline.filter(user => user.socketId !== socketId);
+};
+
+const connectNewUser = (data, socket) => {
+  usersSocketsOnline.push({...data, socketId: socket.id});
+};
+
+//  SellerSenders
 
 module.exports = (io) => io.on('connection', (socket) => {
-  console.log('Novo usuario conectado');
+  const updateSellerOrders = (sellerId) => {
+    console.log('Envia ordem de atualização');
+    const sellerSocketsUser = usersSocketsOnline.filter((data) => data.userId === sellerId);
 
-  socket.on('userConnected', (data) => {
-    usersOnline.push({...data, socketId: socket.id});
-    console.log(usersOnline);
-  });
+    sellerSocketsUser.forEach((sellerConnection) => {
+      io.to(sellerConnection.socketId).emit('newOrderReceived');
+    })
+  };
 
-  socket.on('newOrder', (sellerId) => {
-    const sellerUser = usersOnline.find((data) => data.userId === sellerId);
-    console.log(sellerUser.socketId);
-    io.to(sellerUser.socketId).emit('newOrderReceived');
-    console.log('Nova compra feita');
-  })
+  socket.on('userConnected', (data) => connectNewUser(data, socket));
+
+  socket.on('disconnect', () => removeOnlineUser(socket.id));
+
+  socket.on('newOrder', (sellerId) => updateSellerOrders(sellerId));
 
 });
